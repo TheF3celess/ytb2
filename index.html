@@ -1,43 +1,159 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>YouTube Description Editor</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>YouTube Description Editor</title>
+  <style>
+    /* Global Styles */
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    h1, h2 {
+      margin: 0;
+      color: #444;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+      transition: color 0.3s ease;
+    }
+
+    a:hover {
+      color: crimson;
+    }
+
+    .container {
+      flex: 1; /* Push footer to bottom */
+      padding: 20px;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    /* Navbar Styles */
+    .navbar {
+      background: #333;
+      color: #fff;
+      padding: 15px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .navbar .links a {
+      margin-left: 15px;
+      color: #fff;
+      font-size: 1.1rem;
+    }
+
+    /* Main Section Styles */
+    .main-section {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .editor, .preview {
+      flex: 1 1 calc(50% - 20px);
+      padding: 20px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+      border-radius: 8px;
+      background: #f9f9f9;
+    }
+
+    .editor textarea {
+      width: 100%;
+      height: 200px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      padding: 10px;
+      font-size: 1rem;
+    }
+
+    .preview {
+      background: #fff;
+      border: 1px solid #ddd;
+    }
+
+    .preview-content {
+      white-space: pre-wrap;
+      font-size: 1.1rem;
+      color: #333;
+    }
+
+    /* Footer Styles */
+    footer {
+      background: #333;
+      color: #fff;
+      text-align: center;
+      padding: 15px 0;
+      position: sticky;
+      bottom: 0;
+    }
+
+    footer a {
+      color: crimson;
+    }
+  </style>
 </head>
-<body class="bg-gray-100 font-sans">
-    <!-- Navbar -->
-    <nav class="bg-gray-800 text-white">
-        <div class="container mx-auto flex justify-between items-center p-4">
-            <a href="#" class="text-2xl font-bold">Description Editor</a>
-            <ul class="flex space-x-6">
-                <li><a href="#" class="hover:text-gray-400">Home</a></li>
-                <li><a href="#about" class="hover:text-gray-400">About</a></li>
-                <li><a href="#contact" class="hover:text-gray-400">Contact</a></li>
-            </ul>
-        </div>
-    </nav>
 
-    <!-- Main Content -->
-    <main class="container mx-auto my-8 p-4">
-        <h1 class="text-4xl font-bold text-center text-gray-800 mb-6">Edit YouTube Description</h1>
-        <div class="bg-white shadow rounded-lg p-6">
-            <label for="description" class="block text-lg font-medium text-gray-700 mb-2">Your YouTube Description:</label>
-            <textarea id="description" class="w-full h-40 p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none" placeholder="Enter your description here..."></textarea>
+<body>
 
-            <div class="mt-4 flex justify-end space-x-4">
-                <button class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600">Save</button>
-                <button class="bg-gray-300 text-gray-800 px-4 py-2 rounded-lg hover:bg-gray-400">Clear</button>
-            </div>
-        </div>
-    </main>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="brand">
+      <h1>YouTube Description Editor</h1>
+    </div>
+    <div class="links">
+      <a href="#home">Home</a>
+      <a href="#features">Features</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </nav>
 
-    <!-- Footer -->
-    <footer class="bg-gray-800 text-white">
-        <div class="container mx-auto text-center p-4">
-            <p>&copy; 2025 YouTube Description Editor. All rights reserved.</p>
+  <!-- Main Content -->
+  <div class="container">
+    <h2>Customize and Preview Your Description</h2>
+    <div class="main-section">
+      <!-- Editor Section -->
+      <div class="editor">
+        <h2>Edit Description</h2>
+        <textarea id="description" placeholder="Write your YouTube description here..."></textarea>
+      </div>
+
+      <!-- Preview Section -->
+      <div class="preview">
+        <h2>Live Preview</h2>
+        <div id="preview" class="preview-content">
+          Your description will appear here...
         </div>
-    </footer>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p>Made with ♥ by <a href="#">Your Name</a>. All rights reserved.</p>
+  </footer>
+
+  <script>
+    // Update preview in real-time
+    const descriptionInput = document.getElementById('description');
+    const previewOutput = document.getElementById('preview');
+
+    descriptionInput.addEventListener('input', () => {
+      const description = descriptionInput.value;
+      previewOutput.textContent = description ? description : 'Your description will appear here...';
+    });
+  </script>
+
 </body>
+
 </html>
